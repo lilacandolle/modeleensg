@@ -2,10 +2,10 @@
 % v.1 sept. 2010, D Lercier : création
 % v.2 sept. 2012, T Coupin : création fichier classe et modif.
 % v.3 sept. 2016, J. Beilin, modification de la gestion de la biblio + modifs mineures 
-
+% v4 8 septembre 2023 J. Beilin
 
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{themeensg}[28/09/2016, v3.0]
+\ProvidesClass{themeensg}[08/09/2023, v4.0]
 
 \LoadClass[twoside,11pt,a4paper]{report}
 %\documentclass[twoside,11pt,a4paper]{report}
@@ -27,7 +27,7 @@
 \RequirePackage{graphicx,amssymb}
 \RequirePackage{float}
 \RequirePackage{tabularx}
-\RequirePackage[left=2.5cm, right=2.5cm, top=2.5cm, bottom=2.5cm]{geometry}
+\RequirePackage[left=3.5cm, right=3.5cm, top=3.5cm, bottom=3.5cm]{geometry}
 \RequirePackage[toc,page]{appendix}
 \RequirePackage[nottoc, notlof, notlot]{tocbibind}
 \RequirePackage{wrapfig} %Pour enrouler le texte autour des figures
@@ -202,12 +202,23 @@ $\boxtimes$ Non confidentiel & $\square$ Confidentiel IGN & $\square$ Confidenti
 \large
 \begin{minipage}{4.5cm}%
 \begin{center}%
-\includegraphics[width=3.5cm]{#1}
+\includegraphics[height=3cm]{#1}
 \\
 \vspace{0.5cm}
 \textsf{\large #2}
 \end{center}%
 \end{minipage}%
+}}
+\newcommand{\showgraphicsize}[3]{{%
+		\large
+		\begin{minipage}{4.5cm}%
+			\begin{center}%
+				\includegraphics[height=#3cm]{#1}
+				\\
+				\vspace{0.5cm}
+				\textsf{\large #2}
+			\end{center}%
+		\end{minipage}%
 }}
 %--------------------------------------------------------------------
 % Macro d'inclusion de 2 entreprises
@@ -218,9 +229,9 @@ $\boxtimes$ Non confidentiel & $\square$ Confidentiel IGN & $\square$ Confidenti
 % Parameter 4 : Nom de l'entreprise 2
 \newcommand{\enterprise}[4]{%
 \begin{center}
-\showgraphic{#1}{#2}
+\showgraphicsize{#1}{#2}{2}
 \hfill
-\ifthenelse{\equal{#3}{NULL}}{\hspace*{4.5cm}}{\showgraphic{#3}{#4}}
+\ifthenelse{\equal{#3}{NULL}}{\hspace*{4.5cm}}{\showgraphicsize{#3}{#4}{3}}
 \end{center}
 }%
 %--------------------------------------------------------------------
@@ -239,7 +250,8 @@ $\boxtimes$ Non confidentiel & $\square$ Confidentiel IGN & $\square$ Confidenti
 \@title \\
 
 \rule{\textwidth}{1.5pt}\\
-\includegraphics[height=3cm]{#2}
+\bigskip
+\includegraphics[height=5cm]{#2}
 }
 \end{center}%
 \vfill
